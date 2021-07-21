@@ -1,6 +1,6 @@
 import axios from "axios";
-import queryString from "query-string";
 import _get from "lodash/get";
+import queryString from "query-string";
 
 const host = process.env.REACT_APP_API_URL;
 
@@ -16,7 +16,7 @@ const customAxios = axios.create({
 const createApiUrl = (pathArr, query) => {
   const stringified = queryString.stringify(query);
   let queryUrl = `${host}/${pathArr.filter((item) => !!item).join("/")}`;
-  if (stringified.length) queryUrl += "?" + stringified;
+  if (stringified.length) queryUrl += `?${stringified}`;
   return queryUrl;
 };
 
@@ -27,16 +27,12 @@ customAxios.interceptors.request.use(
     }
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
 customAxios.interceptors.response.use(
-  function (response) {
-    return response;
-  },
-  function (error) {
+  (response) => response,
+  (error) => {
     if (error.response && error.response.status) {
       const statusCode = error.response.status || error.response.statusCode;
       if (statusCode === 401 || statusCode === 403) {
