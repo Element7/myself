@@ -1,4 +1,4 @@
-{ 
+{
   "env": {
     "browser": true,
     "node": true
@@ -15,61 +15,84 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 2018,
+    "ecmaVersion": 2021,
     "project": "tsconfig.json",
     "sourceType": "module"
   },
-  "plugins": [
-    "eslint-plugin-import-helpers"
-  ],
+  "plugins": ["eslint-plugin-import-helpers"],
   "rules": {
+    "jsx-a11y/anchor-is-valid": 0,
     "@typescript-eslint/ban-ts-comment": "off",
-    "@typescript-eslint/no-empty-interface": ["error", {
+    "@typescript-eslint/no-empty-interface": [
+      "warn",
+      {
         "allowSingleExtends": true
       }
     ],
     "@typescript-eslint/no-explicit-any": "off",
     "comma-dangle": "off",
     "global-require": "off",
-    "import-helpers/order-imports": ["error", {
-      "alphabetize": {
-        "ignoreCase": true,
-        "order": "asc"
-      },
-      "groups": [
-        "/^react/",
-        "module",
-        ["parent", "sibling", "index"]
-      ],
-      "newlinesBetween": "always"
-    }],
-    "max-len": ["error", {
-      "code": 130
-    }],
-    "no-multiple-empty-lines": ["error", {
-      "max": 1
-    }],
-    "react/destructuring-assignment": ["warn", "always", {
-      "ignoreClassFields": true
-    }],
-    "react/jsx-max-props-per-line": ["error", {
-      "maximum": 3
-    }],
-    "react/jsx-props-no-spreading": ["error", {
-      "custom": "ignore"
-    }],
-    "react/jsx-sort-props": ["error", {
-      "ignoreCase": true
-    }],
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "alphabetize": {
+          "ignoreCase": true,
+          "order": "asc"
+        },
+        "groups": ["/^react/", "module", ["parent", "sibling", "index"]],
+        "newlinesBetween": "always"
+      }
+    ],
+    "max-len": [
+      "warn",
+      {
+        "code": 130
+      }
+    ],
+    "no-multiple-empty-lines": [
+      "warn",
+      {
+        "max": 1
+      }
+    ],
+    "react/destructuring-assignment": [
+      "warn",
+      "always",
+      {
+        "ignoreClassFields": true
+      }
+    ],
+    "react/jsx-max-props-per-line": [
+      "warn",
+      {
+        "maximum": 3
+      }
+    ],
+    "react/jsx-props-no-spreading": [
+      "warn",
+      {
+        "custom": "ignore"
+      }
+    ],
+    "react/jsx-sort-props": [
+      "warn",
+      {
+        "ignoreCase": true
+      }
+    ],
     "react/jsx-uses-react": "off",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
-    "react/state-in-constructor": ["error", "never"],
-    "semi": "error",
-    "sort-imports": ["error", {
-      "ignoreCase": true,
-      "ignoreDeclarationSort": true
-    }]
+    "react/no-array-index-key": "warn",
+    "react/state-in-constructor": ["warn", "never"],
+    "semi": "warn",
+    "sort-imports": [
+      "warn",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true
+      }
+    ]
   },
   "settings": {
     "react": {

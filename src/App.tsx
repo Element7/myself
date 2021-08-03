@@ -1,40 +1,16 @@
-import React from "react";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 
-import Routes from "routes/Routes";
+import RouteWithSubRoutes from "./routes/Routes";
+import { routes } from "./utils/routes";
 
 const App: React.FC = () => (
-  <div className="App">
-    {/* {displayRouteMenu(ROUTES)}
-    <RenderRoutes routes={ROUTES} /> */}
-    <Routes />
-  </div>
+  <Router>
+    <Switch>
+      {routes.map((route) => {
+        const { key, ...params } = route;
+        return <RouteWithSubRoutes key={route.key} {...params} />;
+      })}
+    </Switch>
+  </Router>
 );
-
 export default App;
-
-// function displayRouteMenu(routes) {
-//   function singleRoute(route) {
-//     return (
-//       <li key={route.key}>
-//         <Link to={route.path}>
-//           {route.key} ({route.path})
-//         </Link>
-//       </li>
-//     );
-//   }
-//   return (
-//     <ul>
-//       {routes.map((route) => {
-//         if (route.routes) {
-//           return (
-//             <React.Fragment key={route.key}>
-//               {singleRoute(route)}
-//               {displayRouteMenu(route.routes)}
-//             </React.Fragment>
-//           );
-//         }
-//         return singleRoute(route);
-//       })}
-//     </ul>
-//   );
-// }
