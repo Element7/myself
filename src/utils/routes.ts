@@ -14,22 +14,25 @@ export const routes = [
   },
   {
     key: "about",
-    // exact: true,
     path: "/about",
     component: About,
     routes: [
       {
         key: "about me",
-        // exact: true,
         path: "/about/kacper",
         component: AboutMe,
       },
       {
         key: "about my work",
-        // exact: true,
         path: "/about/projects",
         component: AboutProjects,
       },
     ],
+  },
+  {
+    key: "movies",
+    exact: true,
+    path: "/movies",
+    component: Home,
   },
 ];

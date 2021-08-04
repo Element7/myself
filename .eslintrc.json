@@ -21,7 +21,13 @@
   },
   "plugins": ["eslint-plugin-import-helpers"],
   "rules": {
-    "jsx-a11y/anchor-is-valid": 0,
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["to", "href"]
+      }
+    ],
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-empty-interface": [
       "warn",
@@ -65,7 +71,7 @@
     "react/jsx-max-props-per-line": [
       "warn",
       {
-        "maximum": 3
+        "maximum": 4
       }
     ],
     "react/jsx-props-no-spreading": [

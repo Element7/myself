@@ -1,30 +1,51 @@
+import { useContext } from "react";
+
+import { Button } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
 import IconButton from "@material-ui/core/IconButton";
 import Link from "@material-ui/core/Link";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
+
+import lightbulbOff from "../../../assets/lightbulb-off.svg";
+import lightbulb from "../../../assets/lightbulb.svg";
+import { ThemeContext } from "../../../providers/ThemeProvider";
+
+const Links = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/movies", label: "Movies list" },
+];
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      flexGrow: 1,
-    },
+    root: { flexGrow: 1 },
     menuButton: {
       marginRight: theme.spacing(2),
     },
     title: {
       flexGrow: 1,
     },
+    linksWrapper: {
+      marginLeft: "auto",
+    },
+    links: {
+      padding: "0 12px",
+    },
   })
 );
 const Header: React.FC = () => {
+  const { theme, dispatch } = useContext(ThemeContext);
   const classes = useStyles();
 
+  const handleTheme = () => {
+    if (theme === "light") dispatch({ type: "SET_DARK_MODE" });
+    else dispatch({ type: "SET_LIGHT_MODE" });
+  };
   return (
-    <AppBar>
+    <AppBar position="relative">
       <Toolbar>
         <IconButton
           aria-label="menu"
@@ -34,14 +55,28 @@ const Header: React.FC = () => {
         >
           <MenuIcon />
         </IconButton>
-        <Typography align="right" className={classes.title} variant="h6">
-          <Link href="/" color="inherit">
-            Link1
-          </Link>
-          <Link href="/" color="inherit">
-            Link2
-          </Link>
-        </Typography>
+        <Box className={classes.linksWrapper}>
+          {Links.map(({ href, label }) => (
+            <Link
+              className={classes.links}
+              color="inherit"
+              href={href}
+              key={label}
+            >
+              {label}
+            </Link>
+          ))}
+        </Box>
+        <IconButton>
+          <Button onClick={handleTheme}>
+            <img
+              alt="lightbulb"
+              height="24"
+              src={theme === "dark" ? lightbulbOff : lightbulb}
+              width="24"
+            />
+          </Button>
+        </IconButton>
       </Toolbar>
     </AppBar>
   );
