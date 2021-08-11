@@ -1,2 +1,2 @@
-const Footer: React.FC = () => <div>asdas</div>;
+const Footer: React.FC = () => <div />;
 export default Footer;

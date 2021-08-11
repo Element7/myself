@@ -14,6 +14,7 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "removeComments": true,
+    "downlevelIteration": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,

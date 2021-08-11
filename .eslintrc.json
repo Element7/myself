@@ -21,6 +21,7 @@
   },
   "plugins": ["eslint-plugin-import-helpers"],
   "rules": {
+    "import/prefer-default-export": "off",
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
