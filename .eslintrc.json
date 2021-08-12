@@ -21,6 +21,13 @@
   },
   "plugins": ["eslint-plugin-import-helpers"],
   "rules": {
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": ["state"]
+      }
+    ],
     "import/prefer-default-export": "off",
     "jsx-a11y/anchor-is-valid": [
       "error",
