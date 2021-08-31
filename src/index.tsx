@@ -3,13 +3,20 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 
+import CssBaseline from "@material-ui/core/CssBaseline";
+
 import App from "./App";
+import { ThemeProvider } from "./providers/ThemeProvider";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <CssBaseline>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </CssBaseline>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
