@@ -42,8 +42,6 @@ const ThemeProvider: React.FC<React.ReactNode> = ({ children }) => {
       secondary: {
         light: "#ff4400",
         main: "#000",
-        // dark: will be calculated from palette.primary.main,
-        // contrastText: will be calculated to contrast with palette.primary.main
       },
       type: state.theme === "dark" ? "dark" : "light",
     },

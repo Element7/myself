@@ -8,6 +8,7 @@ import { gsap } from "gsap";
 
 import { ReactComponent as HomeCinema } from "../../assets/cinema.svg";
 import { ReactComponent as Stars } from "../../assets/stars.svg";
+import AnimatedHeading from "../../components/atoms/animatedHeading/AnimatedHeading";
 import { ThemeContext } from "../../providers/ThemeProvider";
 import {
   lightLamp,
@@ -25,7 +26,6 @@ const useStyles = makeStyles(() =>
     title: {
       display: "flex",
       width: "fit-content",
-      margin: "4rem auto 1.5rem auto",
     },
     margin: { marginRight: "24px" },
   })
@@ -57,30 +57,6 @@ const Home: React.FC = () => {
   const classes = useStyles();
 
   useLayoutEffect(() => {
-    let elements;
-    let elementsArr;
-    if (wrapperRef.current !== null) {
-      elements = wrapperRef.current.children;
-      elementsArr = Array.from(elements);
-      const mainTitle = elementsArr[0];
-      const mainTitleChars = mainTitle.childNodes;
-
-      const tl = gsap.timeline({
-        defaults: { ease: "power3.inOut" },
-      });
-      gsap.set([mainTitleChars], { autoAlpha: 0 });
-      mainTitleChars.forEach((e) =>
-        tl.fromTo(
-          e,
-          { y: "+=10" },
-          { duration: 0.1, y: "-=15", autoAlpha: 1 },
-          "-=0.01"
-        )
-      );
-    }
-  }, []);
-
-  useLayoutEffect(() => {
     if (wrapperRef.current !== null) {
       const elements = wrapperRef.current.children;
       const starsImg = elements[1];
@@ -104,19 +80,11 @@ const Home: React.FC = () => {
 
   return (
     <div ref={wrapperRef}>
-      <Typography className={classes.title} variant="h2">
-        {Array.from(title).map((e, i) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <div className={clsx(e === "e" && classes.margin)} id={e} key={i}>
-            {e}
-          </div>
-        ))}
-        {Array.from(title2).map((e, i) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <div key={i}>{e}</div>
-        ))}
-      </Typography>
-      <Stars style={starsStyle} />
+      <AnimatedHeading
+        text={["M", "o", "v", "i", "e", "", "P", "i", "c", "k", "e", "r"]}
+        variant="h2"
+      />
+      {/* <Stars style={starsStyle} />
       <div
         onClick={() => onMainPictureClick(imgRef, switchTl, theme, dispatch)}
         onKeyPress={() => onMainPictureClick(imgRef, switchTl, theme, dispatch)}
@@ -128,7 +96,7 @@ const Home: React.FC = () => {
         tabIndex={0}
       >
         <HomeCinema />
-      </div>
+      </div> */}
     </div>
   );
 };

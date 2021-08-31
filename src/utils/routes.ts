@@ -4,6 +4,7 @@ import About from "../pages/about/About";
 import AboutMe from "../pages/about/aboutMe/About";
 import AboutProjects from "../pages/about/aboutProjects/AboutProjects";
 import Home from "../pages/home/Home";
+import Picker from "../pages/picker/Picker";
 
 export const routes = [
   {
@@ -34,5 +35,11 @@ export const routes = [
     exact: true,
     path: "/movies",
     component: Home,
+  },
+  {
+    key: "picker",
+    exact: true,
+    path: "/picker",
+    component: Picker,
   },
 ];

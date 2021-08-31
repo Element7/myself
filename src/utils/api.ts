@@ -1,30 +1,32 @@
-import axios from "axios";
+/* eslint-disable no-console */
+/* eslint-disable no-alert */
+/* eslint-disable no-param-reassign */
+import axios, { AxiosPromise, AxiosRequestConfig } from "axios";
 import _get from "lodash/get";
 import queryString from "query-string";
 
 const host = process.env.REACT_APP_API_URL;
-
+const key = process.env.REACT_APP_API_KEY;
 const customAxios = axios.create({
   baseURL: host,
   timeout: 60000,
 });
 
-// const authorizationHeader = token => ({
-//   Authorization: `Bearer ${token}`
-// });
-
-const createApiUrl = (pathArr, query) => {
-  const stringified = queryString.stringify(query);
+const createApiUrl = (pathArr: string[], query?: Map<string, any>) => {
   let queryUrl = `${host}/${pathArr.filter((item) => !!item).join("/")}`;
-  if (stringified.length) queryUrl += `?${stringified}`;
+  if (query) {
+    queryUrl += "?";
+    const obj = Object.fromEntries(query);
+    const stringified = queryString.stringify(obj);
+    if (stringified.length) queryUrl += `${stringified}`;
+  }
+  console.log(queryUrl);
   return queryUrl;
 };
-
 customAxios.interceptors.request.use(
-  (config) => {
-    if (!config.data) {
-      config.data = {};
-    }
+  (config: AxiosRequestConfig): AxiosRequestConfig => {
+    config.headers["x-api-key"] = key;
+    console.log(config);
     return config;
   },
   (error) => Promise.reject(error)
@@ -54,10 +56,16 @@ customAxios.interceptors.response.use(
 
 const api = {
   customAxios,
-  getExample(arg1, arg2) {
+  getBreedsList(limit: number, page: number): AxiosPromise<any> {
     return customAxios({
       method: "get",
-      url: createApiUrl(["example", arg1, "example2", arg2, "something"]),
+      url: createApiUrl(
+        ["breeds"],
+        new Map([
+          ["limit", limit],
+          ["page", page],
+        ])
+      ),
     });
   },
 };

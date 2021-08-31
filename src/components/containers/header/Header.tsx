@@ -1,6 +1,5 @@
 import { useContext } from "react";
 
-import { Button } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Box from "@material-ui/core/Box";
 import IconButton from "@material-ui/core/IconButton";
@@ -15,6 +14,7 @@ import { ThemeContext } from "../../../providers/ThemeProvider";
 
 const Links = [
   { href: "/", label: "Home" },
+  { href: "/picker", label: "Picker" },
   { href: "/about", label: "About" },
   { href: "/movies", label: "Movies list" },
 ];
@@ -67,15 +67,13 @@ const Header: React.FC = () => {
             </Link>
           ))}
         </Box>
-        <IconButton>
-          <Button onClick={handleTheme}>
-            <img
-              alt="lightbulb"
-              height="24"
-              src={theme === "dark" ? lightbulbOff : lightbulb}
-              width="24"
-            />
-          </Button>
+        <IconButton onClick={handleTheme}>
+          <img
+            alt="lightbulb"
+            height="24"
+            src={theme === "dark" ? lightbulbOff : lightbulb}
+            width="24"
+          />
         </IconButton>
       </Toolbar>
     </AppBar>

@@ -4,12 +4,13 @@ import { useDispatch } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 
-import MoviesSlice from "../features/movies/moviesSlice";
+import DogsSlice from "../features/dogs/dogsSlice";
 
 export const store = configureStore({
   reducer: {
-    movies: MoviesSlice,
+    dogs: DogsSlice,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
