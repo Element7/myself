@@ -78,6 +78,9 @@ const Home: React.FC = () => {
     }
   }, [theme]);
 
+  console.log("test");
+  asdads;
+
   return (
     <div ref={wrapperRef}>
       <AnimatedHeading
